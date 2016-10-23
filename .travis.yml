@@ -62,9 +62,7 @@ before_cache:
     xargs docker save |
     gzip -9 > $HOME/docker/rust-ci.tar.gz
 before_install:
-  - if [ -f $HOME/docker/rust-ci.tar.gz ]; then
-      zcat $HOME/docker/rust-ci.tar.gz | docker load;
-    fi
+  - zcat $HOME/docker/rust-ci.tar.gz | docker load || true
 
 notifications:
   email: false
